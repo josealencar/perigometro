@@ -1,0 +1,3 @@
+Criação do BD  e .Dominio- Rodrigo
+Configuração de Script para importação - Jose
+Criação do .Web e incio do CRUD com imp para BD - Augusto

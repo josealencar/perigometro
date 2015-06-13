@@ -1,0 +1,21 @@
+ID
+Latitude
+Longitude
+Tipo_Acidente
+Fatais
+TipoVeiculo:
+	Auto
+	Taxi
+	Lotacao
+	Onibus_Int
+	Onibus_Urb
+	Caminhao
+	Moto
+	Carroça
+	Bicicleta
+	Outro
+Tempo (Condição climatica)
+Dia_Sem
+Regiao
+Ano
+

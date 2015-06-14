@@ -1,0 +1,141 @@
+﻿@model IEnumerable<Perigometro.Dominio.Acidente>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tipo_Acid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fatais)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Auto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Taxi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lotacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Onibus_Urb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Onibus_Int)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Caminhao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Moto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Carroca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bicicleta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Outro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tempo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Noite_dia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Regiao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dia_Sem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ano)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Latitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Longitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tipo_Acid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fatais)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Auto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Taxi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lotacao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Onibus_Urb)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Onibus_Int)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Caminhao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Moto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Carroca)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bicicleta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Outro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tempo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Noite_dia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Regiao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dia_Sem)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ano)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

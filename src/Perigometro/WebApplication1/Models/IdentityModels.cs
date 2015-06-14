@@ -28,5 +28,7 @@ namespace WebApplication1.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Perigometro.Dominio.Acidente> Acidentes { get; set; }
     }
 }

@@ -1,0 +1,170 @@
+﻿@model Perigometro.Dominio.Acidente
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Acidente</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Latitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Longitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo_Acid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo_Acid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fatais)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fatais)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Auto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Auto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Taxi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Taxi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lotacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lotacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Onibus_Urb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Onibus_Urb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Onibus_Int)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Onibus_Int)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Caminhao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Caminhao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Moto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Moto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Carroca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Carroca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bicicleta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bicicleta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Outro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Outro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tempo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tempo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Noite_dia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Noite_dia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Regiao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Regiao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dia_Sem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dia_Sem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ano)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ano)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

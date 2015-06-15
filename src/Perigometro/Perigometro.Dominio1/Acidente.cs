@@ -16,6 +16,7 @@ namespace Perigometro.Dominio
         public int Taxi { get; set; }
         public int Lotacao { get; set; }
         public int Onibus_Urb { get; set; }
+        public int Onibus_Met { get; set; }
         public int Onibus_Int { get; set; }
         public int Caminhao { get; set; }
         public int Moto { get; set; }

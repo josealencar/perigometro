@@ -10,7 +10,8 @@ using Perigometro.Dominio;
 using WebApplication1.Models;
 
 namespace WebApplication1
-{
+{   
+    [Authorize]
     public class AcidentesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

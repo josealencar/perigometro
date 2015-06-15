@@ -48,7 +48,7 @@ namespace WebApplication1
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Latitude,Longitude,Tipo_Acid,Fatais,Auto,Taxi,Lotacao,Onibus_Urb,Onibus_Int,Caminhao,Moto,Carroca,Bicicleta,Outro,Tempo,Noite_dia,Regiao,Dia_Sem,Ano")] Acidente acidente)
+        public ActionResult Create([Bind(Include = "Id,Latitude,Longitude,Tipo_Acid,Fatais,Auto,Taxi,Lotacao,Onibus_Urb,Onibus_Met,Onibus_Int,Caminhao,Moto,Carroca,Bicicleta,Outro,Tempo,Noite_dia,Regiao,Dia_Sem,Ano")] Acidente acidente)
         {
             if (ModelState.IsValid)
             {
@@ -59,6 +59,18 @@ namespace WebApplication1
 
             return View(acidente);
         }
+
+        [HttpPost]
+        public String CreateLista(IList<Acidente> acidentes)
+        {
+            foreach (var acidente in acidentes)
+            {
+                db.Acidentes.Add(acidente);      
+            }
+            db.SaveChanges();
+            return "Sucesso";
+        }
+
 
         // GET: Acidentes/Edit/5
         public ActionResult Edit(int? id)

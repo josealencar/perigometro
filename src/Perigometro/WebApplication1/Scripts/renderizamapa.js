@@ -111,6 +111,14 @@ function adicionaHeatmap() {
         data: heatmapData
     });
     heatmap.setMap(map);
+    $.ajax({
+        url: '/Acidentes/CreateLista',
+        data: dadosJson,
+        type: 'POST',
+        dataType: 'json'
+    }).done(function (res) {
+        console.log(res);
+    })
 };
 
 /*Modificação do heatmap*/

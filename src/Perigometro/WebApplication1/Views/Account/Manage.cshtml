@@ -1,7 +1,7 @@
 ﻿@using WebApplication1.Models;
 @using Microsoft.AspNet.Identity;
 @{
-    ViewBag.Title = "Manage Account";
+    ViewBag.Title = "Administrar conta";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -18,10 +18,7 @@
             @Html.Partial("_SetPasswordPartial")
         }
 
-        <section id="externalLogins">
-            @Html.Action("RemoveAccountList")
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { Action = "LinkLogin", ReturnUrl = ViewBag.ReturnUrl })
-        </section>
+       
     </div>
 </div>
 @section Scripts {

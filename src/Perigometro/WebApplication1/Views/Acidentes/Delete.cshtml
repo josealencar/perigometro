@@ -1,12 +1,12 @@
 ﻿@model Perigometro.Dominio.Acidente
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Excluir";
 }
 
-<h2>Delete</h2>
+<h2>Excluir registro</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Voçê tem certeza que deseja excluir este registro?</h3>
 <div>
     <h4>Acidente</h4>
     <hr />
@@ -169,8 +169,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Excluir" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar para a lista", "Index")
         </div>
     }
 </div>

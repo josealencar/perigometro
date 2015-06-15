@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Perigometro.Dominio.Acidente>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Acidentes";
 }
 
-<h2>Index</h2>
+<h2>Acidentes registrados</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Inserir novo registro", "Create")
 </p>
 <table class="table">
     <tr>
@@ -131,9 +131,9 @@
             @Html.DisplayFor(modelItem => item.Ano)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Excluir", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

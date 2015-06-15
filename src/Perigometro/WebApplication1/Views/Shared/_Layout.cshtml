@@ -24,7 +24,9 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Registro de Acidentes", "Index", "Acidentes")</li>
+                        <li>@Html.ActionLink("Registro de Acidentes", "Index", "Acidentes")</li>                       
+                        <li>@Html.ActionLink("Registrar Usuarios", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+       
                     }  
                 </ul>
                 @Html.Partial("_LoginPartial")

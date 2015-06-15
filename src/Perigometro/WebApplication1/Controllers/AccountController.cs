@@ -75,7 +75,7 @@ namespace WebApplication1.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+        
         public ActionResult Register()
         {
             return View();

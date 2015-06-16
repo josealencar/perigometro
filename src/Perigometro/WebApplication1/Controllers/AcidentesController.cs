@@ -64,14 +64,15 @@ namespace WebApplication1
 
         [HttpPost]
         [AllowAnonymous]
-        public String CreateLista(List<Acidente> acidentes)
+        public JsonResult CreateLista(List<Acidente> acidentes)
         {
+            if (acidentes == null) return Json( "Falhou" ,JsonRequestBehavior.AllowGet);
             foreach (var acidente in acidentes)
             {
                 db.Acidentes.Add(acidente);      
             }
             db.SaveChanges();
-            return "Sucesso";
+            return Json("Salvou no BD", JsonRequestBehavior.AllowGet);
         }
 
 

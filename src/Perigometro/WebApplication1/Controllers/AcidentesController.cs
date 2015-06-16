@@ -75,6 +75,15 @@ namespace WebApplication1
             return Json("Salvou no BD", JsonRequestBehavior.AllowGet);
         }
 
+        [AllowAnonymous]
+        public JsonResult BuscarTodos()
+        {
+            var dados = db.Acidentes.Select(_ => new { _.Latitude, _.Longitude }).ToList();
+            var jsonResult = Json(new { Dados = dados}, JsonRequestBehavior.AllowGet);
+            jsonResult.MaxJsonLength = int.MaxValue;
+            return jsonResult;
+        }
+
 
         // GET: Acidentes/Edit/5
         public ActionResult Edit(int? id)

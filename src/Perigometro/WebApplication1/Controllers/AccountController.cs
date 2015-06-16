@@ -65,7 +65,7 @@ namespace WebApplication1.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid username or password.");
+                    ModelState.AddModelError("", "Usuário ou senha inválidos.");
                 }
             }
 
@@ -75,7 +75,8 @@ namespace WebApplication1.Controllers
 
         //
         // GET: /Account/Register
-        
+
+        [Authorize(Roles = "admin")]
         public ActionResult Register()
         {
             return View();
@@ -84,7 +85,7 @@ namespace WebApplication1.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {

@@ -15,8 +15,10 @@ namespace WebApplication1
                         "~/Scripts/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/bundles/javascriptmapa").Include(
-                        "~/Scripts/renderizamapa.js")
-                        .Include("~/Scripts/ajaxdatapoa.js"));
+                        "~/Scripts/renderizamapa.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/javascriptdados").Include(
+                        "~/Scripts/ajaxbaselocal.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.

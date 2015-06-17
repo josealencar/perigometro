@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model Perigometro.Dominio1.Lista
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -34,58 +36,33 @@
                                     <div class="yamm-content full">
                                         <div class="row">
                                             <div class="col-sm-4">
-                                                <select class="form-control" id="anoIni">
-                                                    <option>-- Selecione a Data inicial --</option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>...</option>
-                                                </select><br />
-                                                <select class="form-control" id="anoFin">
-                                                    <option>-- Data final --</option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>...</option>
-                                                </select><br />
-                                                <select class="form-control" id="clima">
-                                                    <option>-- Condições climáticas --</option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>...</option>
-                                                </select><br />                                                
+                                                Ano inicial:<br />
+                                                @Html.EnumDropDownListFor(model => model.Ano, htmlAttributes: new { @class = "form-control" })
+                                                <br />
+                                                Ano final:<br />
+                                                @Html.EnumDropDownListFor(model => model.Ano, htmlAttributes: new { @class = "form-control" })
+                                                <br />
+                                                Condições climáticas:<br />
+                                                @Html.EnumDropDownListFor(model => model.Clima, htmlAttributes: new { @class = "form-control" })
+                                                <br />                                                
                                             </div>
                                             <div class="col-sm-4">
-                                                <select class="form-control" id="regiao">
-                                                    <option>-- Região --</option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>...</option>
-                                                </select><br />
-                                                <select class="form-control" id="semana">
-                                                    <option>-- Dia da semana --</option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>...</option>
-                                                </select><br />
-                                                <select class="form-control" id="turno">
-                                                    <option>-- Dia / Noite --</option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>...</option>
-                                                </select><br />
+                                                Região:<br />
+                                                @Html.EnumDropDownListFor(model => model.Regiao, htmlAttributes: new { @class = "form-control" })
+                                                <br />
+                                                Dia da semana:<br />
+                                                @Html.EnumDropDownListFor(model => model.Semana, htmlAttributes: new { @class = "form-control" })
+                                                <br />
+                                                Turno:<br />
+                                                @Html.EnumDropDownListFor(model => model.Turno, htmlAttributes: new { @class = "form-control" })
+                                                <br />
                                             </div>
                                             <div class="col-sm-4">
-                                                <select class="form-control" id="tipo">
-                                                    <option>-- Tipo de acidente --</option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>...</option>
-                                                </select><br />
-                                                <select class="form-control" id="veiculo">
-                                                    <option>-- Tipo de veículo --</option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>...</option>
-                                                </select>
+                                                Tipo de acidente:<br />
+                                                @Html.EnumDropDownListFor(model => model.Tipo, htmlAttributes: new { @class = "form-control" })
+                                                <br />
+                                                Tipo de veículo:<br />
+                                                @Html.EnumDropDownListFor(model => model.Veiculo, htmlAttributes: new { @class = "form-control" })
 
                                                 <div class="checkbox">
                                                     <label><input type="checkbox" value="">Somente acidentes Fatais</label>

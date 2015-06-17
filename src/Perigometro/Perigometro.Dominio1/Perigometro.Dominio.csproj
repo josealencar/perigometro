@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Acidente.cs" />
+    <Compile Include="Ano.cs" />
+    <Compile Include="Lista.cs" />
     <Compile Include="Tipo.cs" />
     <Compile Include="Turno.cs" />
     <Compile Include="Semana.cs" />

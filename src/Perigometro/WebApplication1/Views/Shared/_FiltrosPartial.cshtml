@@ -32,7 +32,7 @@
             @Html.EnumDropDownListFor(model => model.Veiculo, "selecione um valor", htmlAttributes: new { @class = "form-control" })
 
             <div class="checkbox">
-                <label><input type="checkbox" value="">Somente acidentes Fatais</label>
+                <label><input type="checkbox" name="Fatal" value="true">Somente acidentes Fatais</label>
             </div>
 
             <input type="submit" value="Filtrar Acidentes" class="btn btn-success btn-block" />

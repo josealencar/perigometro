@@ -18,7 +18,8 @@ namespace WebApplication1
                         "~/Scripts/renderizamapa.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/javascriptdados").Include(
-                        "~/Scripts/ajaxbaselocal.js"));
+                        "~/Scripts/ajaxbaselocal.js")
+                        .Include("~/Scripts/ajaxFiltrosIndex.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/yamm").Include(
                         "~/Scripts/yamm.js"));

@@ -2,22 +2,22 @@
     ViewBag.Title = "Home";
 }
 
-<div id="map_canvas">
-
-</div>
+<div id="map_canvas"></div>
 
 <div id="botoes">
-    <button onclick="toggleHeatmap()">ON / OFF</button>
-    <button onclick="changeGradient()">COR</button>
-    <button onclick="changeRadius()">RAIO</button>
-    <button onclick="changeOpacity()">OPACIDADE</button>
+	<button onclick="toggleHeatmap()">ON / OFF</button>
+	<button onclick="changeGradient()">COR</button>
+	<button onclick="changeRadius()">RAIO</button>
+	<button onclick="changeOpacity()">OPACIDADE</button>
 </div>
+				
+
 
 @section Scripts{
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?libraries=visualization&sensor=true_or_false">
 </script>
-@Scripts.Render("~/bundles/javascriptmapa");
-@Scripts.Render("~/bundles/javascriptdados");
+@Scripts.Render("~/bundles/javascriptmapa")
+@Scripts.Render("~/bundles/javascriptdados")
 }

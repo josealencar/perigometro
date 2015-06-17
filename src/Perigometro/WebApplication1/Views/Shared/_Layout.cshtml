@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Perigômetro Web</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/yamm")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
-    <div class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar yamm navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -18,28 +18,107 @@
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("Perigômetro Web", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                
+
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
+
+                    <li class="dropdown yamm-fw">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Filtrar Acidentes</a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <!-- Content container to add padding -->
+
+                                <form action="" method="post" name="filtros">
+                                    <div class="yamm-content full">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <select class="form-control" id="ano">
+                                                    <option>-- Selecione o ano --</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>...</option>
+                                                </select><br />
+                                                <select class="form-control" id="clima">
+                                                    <option>-- Condições climáticas --</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>...</option>
+                                                </select><br />
+                                                <select class="form-control" id="veiculo">
+                                                    <option>-- Tipo de veículo --</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>...</option>
+                                                </select><br />
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <select class="form-control" id="regiao">
+                                                    <option>-- Região --</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>...</option>
+                                                </select><br />
+                                                <select class="form-control" id="semana">
+                                                    <option>-- Dia da semana --</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>...</option>
+                                                </select><br />
+                                                <select class="form-control" id="dia_noite">
+                                                    <option>-- Dia / Noite --</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>...</option>
+                                                </select><br />
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <select class="form-control" id="tipo">
+                                                    <option>-- Tipo de acidente --</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>...</option>
+                                                </select><br />
+
+                                                <div class="checkbox">
+                                                    <label><input type="checkbox" value="">Somente acidentes Fatais</label>
+                                                </div><br />
+
+                                                <input type="submit" value="Filtrar Acidentes" class="btn btn-success btn-block" />
+                                            </div>                                            
+                                        </div>
+                                    </div>
+
+                                </form>
+
+                            </li>
+                        </ul>
+
+
                     <li>@Html.ActionLink("Sobre", "Sobre", "Sobre")</li>
+
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Registro de Acidentes", "Index", "Acidentes")</li>
-                        
+
                         if (User.IsInRole("admin"))
                         {
-                            <li>@Html.ActionLink("Registrar Usuarios", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                            <li>@Html.ActionLink("Registrar Usuários", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                         }
-                    }  
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
-    </div>
+    </nav>
     <div class="container body-content">
-        @RenderBody()
+        <div class="row">
+
+           @RenderBody()
+
+        </div>
+
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Perigômetro Web - CWI Crescer - 2015/1</p>
@@ -48,6 +127,8 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/yamm")
     @RenderSection("scripts", required: false)
+
 </body>
 </html>

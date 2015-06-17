@@ -242,6 +242,7 @@
     <Content Include="Views\Acidentes\Edit.cshtml" />
     <Content Include="Views\Acidentes\Index.cshtml" />
     <Content Include="Views\Sobre\Sobre.cshtml" />
+    <Content Include="Views\Shared\_FiltrosPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Perigometro.Dominio
+namespace Perigometro.Dominio1
 {
     public class Acidente
     {

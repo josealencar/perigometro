@@ -8,13 +8,13 @@ namespace Perigometro.Dominio1
 {
     public class Lista 
     {
-        public Ano Ano { get; set; }
-        public Clima Clima { get; set; }
-        public Regiao Regiao { get; set; }
-        public Semana Semana { get; set; }
-        public Tipo Tipo { get; set; }
-        public Turno Turno { get; set; }
-        public Veiculo Veiculo { get; set; }
+        public Ano? Ano { get; set; }
+        public Clima? Clima { get; set; }
+        public Regiao? Regiao { get; set; }
+        public Semana? Semana { get; set; }
+        public Tipo? Tipo { get; set; }
+        public Turno? Turno { get; set; }
+        public Veiculo? Veiculo { get; set; }
 
     }
 }

@@ -1,6 +1,4 @@
-﻿@model Perigometro.Dominio1.Lista
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -26,6 +24,8 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
 
+                    @if (ViewBag.FiltrarAcidentes != null && ViewBag.FiltrarAcidentes)
+                    {
                     <li class="dropdown yamm-fw">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Filtrar Acidentes</a>
                         <ul class="dropdown-menu">
@@ -33,64 +33,25 @@
                                 <!-- Content container to add padding -->
 
                                 <form action="" method="post" name="filtros">
-                                    <div class="yamm-content full">
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                Ano inicial:<br />
-                                                @Html.EnumDropDownListFor(model => model.Ano, htmlAttributes: new { @class = "form-control" })
-                                                <br />
-                                                Ano final:<br />
-                                                @Html.EnumDropDownListFor(model => model.Ano, htmlAttributes: new { @class = "form-control" })
-                                                <br />
-                                                Condições climáticas:<br />
-                                                @Html.EnumDropDownListFor(model => model.Clima, htmlAttributes: new { @class = "form-control" })
-                                                <br />                                                
-                                            </div>
-                                            <div class="col-sm-4">
-                                                Região:<br />
-                                                @Html.EnumDropDownListFor(model => model.Regiao, htmlAttributes: new { @class = "form-control" })
-                                                <br />
-                                                Dia da semana:<br />
-                                                @Html.EnumDropDownListFor(model => model.Semana, htmlAttributes: new { @class = "form-control" })
-                                                <br />
-                                                Turno:<br />
-                                                @Html.EnumDropDownListFor(model => model.Turno, htmlAttributes: new { @class = "form-control" })
-                                                <br />
-                                            </div>
-                                            <div class="col-sm-4">
-                                                Tipo de acidente:<br />
-                                                @Html.EnumDropDownListFor(model => model.Tipo, htmlAttributes: new { @class = "form-control" })
-                                                <br />
-                                                Tipo de veículo:<br />
-                                                @Html.EnumDropDownListFor(model => model.Veiculo, htmlAttributes: new { @class = "form-control" })
-
-                                                <div class="checkbox">
-                                                    <label><input type="checkbox" value="">Somente acidentes Fatais</label>
-                                                </div>
-
-                                                <input type="submit" value="Filtrar Acidentes" class="btn btn-success btn-block" />
-                                            </div>                                            
-                                        </div>
-                                    </div>
-
+                                    @Html.Partial("_FiltrosPartial", new Perigometro.Dominio1.Lista())
                                 </form>
 
                             </li>
                         </ul>
-
-
+                    </li>
+                    }
                     <li>@Html.ActionLink("Sobre", "Sobre", "Sobre")</li>
 
-                    @if (User.Identity.IsAuthenticated)
+        @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Registro de Acidentes", "Index", "Acidentes")</li>
+            <li>@Html.ActionLink("Registro de Acidentes", "Index", "Acidentes")</li>
 
                         if (User.IsInRole("admin"))
                         {
                             <li>@Html.ActionLink("Registrar Usuários", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                         }
                     }
-                </ul>
+    </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

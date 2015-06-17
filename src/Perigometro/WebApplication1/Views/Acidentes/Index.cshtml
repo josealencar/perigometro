@@ -1,22 +1,17 @@
-﻿@model IEnumerable<Perigometro.Dominio.Acidente>
+﻿@model IEnumerable<Perigometro.Dominio1.Acidente>
 
 @{
     ViewBag.Title = "Acidentes";
 }
 
-<h2>Acidentes registrados</h2>
+<h2>Acidentes registrados (Exibindo somente os últimos 100 registros)</h2>
 
 <p>
     @Html.ActionLink("Inserir novo registro", "Create")
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Latitude)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Longitude)
-        </th>
+        
         <th>
             @Html.DisplayNameFor(model => model.Tipo_Acid)
         </th>
@@ -73,12 +68,7 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Latitude)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Longitude)
-        </td>
+        
         <td>
             @Html.DisplayFor(modelItem => item.Tipo_Acid)
         </td>

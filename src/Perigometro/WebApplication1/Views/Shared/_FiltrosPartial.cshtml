@@ -1,0 +1,41 @@
+﻿@model Perigometro.Dominio1.Lista
+
+<div class="yamm-content full">
+    <div class="row">
+        <div class="col-sm-4">
+            Ano inicial:<br />
+            @Html.EnumDropDownListFor(model => model.Ano, "selecione um valor", htmlAttributes: new { @class = "form-control" })
+            <br />
+            Ano final:<br />
+            @Html.EnumDropDownListFor(model => model.Ano, "selecione um valor", htmlAttributes: new { @class = "form-control" })
+            <br />
+            Condições climáticas:<br />
+            @Html.EnumDropDownListFor(model => model.Clima, "selecione um valor", htmlAttributes: new { @class = "form-control" })
+            <br />
+        </div>
+        <div class="col-sm-4">
+            Região:<br />
+            @Html.EnumDropDownListFor(model => model.Regiao, "selecione um valor", htmlAttributes: new { @class = "form-control" })
+            <br />
+            Dia da semana:<br />
+            @Html.EnumDropDownListFor(model => model.Semana, "selecione um valor", htmlAttributes: new { @class = "form-control" })
+            <br />
+            Turno:<br />
+            @Html.EnumDropDownListFor(model => model.Turno, "selecione um valor", htmlAttributes: new { @class = "form-control" })
+            <br />
+        </div>
+        <div class="col-sm-4">
+            Tipo de acidente:<br />
+            @Html.EnumDropDownListFor(model => model.Tipo, "selecione um valor", htmlAttributes: new { @class = "form-control" })
+            <br />
+            Tipo de veículo:<br />
+            @Html.EnumDropDownListFor(model => model.Veiculo, "selecione um valor", htmlAttributes: new { @class = "form-control" })
+
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Somente acidentes Fatais</label>
+            </div>
+
+            <input type="submit" value="Filtrar Acidentes" class="btn btn-success btn-block" />
+        </div>
+    </div>
+</div>

@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.Mvc;
-using Perigometro.Dominio;
+using Perigometro.Dominio1;
 using WebApplication1.Models;
 
 namespace WebApplication1
@@ -20,7 +20,8 @@ namespace WebApplication1
         // GET: Acidentes
         public ActionResult Index()
         {
-            return View(db.Acidentes.Where(_ => _.Ano == 2013).Select(_ => new { _.Latitude, _.Longitude }).ToList());
+            var dados = db.Acidentes.OrderByDescending(x => x.Id).Take(100).ToList();
+            return View(dados);
         }
 
         // GET: Acidentes/Details/5

@@ -20,7 +20,7 @@ namespace WebApplication1
         // GET: Acidentes
         public ActionResult Index()
         {
-            return View(db.Acidentes.ToList());
+            return View(db.Acidentes.Where(_ => _.Ano == 2013).Select(_ => new { _.Latitude, _.Longitude }).ToList());
         }
 
         // GET: Acidentes/Details/5

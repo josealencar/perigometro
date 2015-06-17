@@ -20,7 +20,7 @@ namespace WebApplication1
         // GET: Acidentes
         public ActionResult Index()
         {
-            return View(db.Acidentes.ToList());
+            return View(db.Acidentes.Where(_ => _.Ano == 2013).Select(_ => new { _.Latitude, _.Longitude }).ToList());
         }
 
         // GET: Acidentes/Details/5
@@ -76,9 +76,9 @@ namespace WebApplication1
         }
 
         [AllowAnonymous]
-        public JsonResult BuscarTodos()
+        public JsonResult BuscarInicial()
         {
-            var dados = db.Acidentes.Select(_ => new { _.Latitude, _.Longitude }).ToList();
+            var dados = db.Acidentes.Where(_ => _.Ano == 2013).Select(_ => new { _.Latitude, _.Longitude }).ToList();
             var jsonResult = Json(new { Dados = dados}, JsonRequestBehavior.AllowGet);
             jsonResult.MaxJsonLength = int.MaxValue;
             return jsonResult;

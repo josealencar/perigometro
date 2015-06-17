@@ -1,6 +1,6 @@
 ﻿function buscarDados() {
     $.ajax({
-        url: '/Acidentes/BuscarTodos',
+        url: '/Acidentes/BuscarInicial',
         type: 'GET'
     }).done(function (res) { console.log(res); populaHeatmapData(res); });
 };

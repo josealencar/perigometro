@@ -26,32 +26,32 @@
 
                     @if (ViewBag.FiltrarAcidentes != null && ViewBag.FiltrarAcidentes)
                     {
-                    <li class="dropdown yamm-fw">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Filtrar Acidentes</a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <!-- Content container to add padding -->
+                        <li class="dropdown yamm-fw">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Filtrar Acidentes</a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <!-- Content container to add padding -->
 
-                                <form action="" method="post" name="filtros">
-                                    @Html.Partial("_FiltrosPartial", new Perigometro.Dominio1.Lista())
-                                </form>
+                                    <form action="" method="post" name="filtros">
+                                        @Html.Partial("_FiltrosPartial", new Perigometro.Dominio1.Lista())
+                                    </form>
 
-                            </li>
-                        </ul>
-                    </li>
+                                </li>
+                            </ul>
+                        </li>
                     }
                     <li>@Html.ActionLink("Sobre", "Sobre", "Sobre")</li>
 
-        @if (User.Identity.IsAuthenticated)
+                    @if (User.Identity.IsAuthenticated)
                     {
-            <li>@Html.ActionLink("Registro de Acidentes", "Index", "Acidentes")</li>
+                        <li>@Html.ActionLink("Registro de Acidentes", "Index", "Acidentes")</li>
 
                         if (User.IsInRole("admin"))
                         {
                             <li>@Html.ActionLink("Registrar Usuários", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                         }
                     }
-    </ul>
+                </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -59,7 +59,7 @@
     <div class="container body-content">
         <div class="row">
 
-           @RenderBody()
+            @RenderBody()
 
         </div>
 

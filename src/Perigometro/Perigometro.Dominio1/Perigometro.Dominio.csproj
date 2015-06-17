@@ -40,6 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Acidente.cs" />
+    <Compile Include="Clima - Copy %282%29.cs" />
+    <Compile Include="Veiculo.cs" />
+    <Compile Include="Clima.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

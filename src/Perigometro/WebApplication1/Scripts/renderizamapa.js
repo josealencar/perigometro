@@ -6,8 +6,8 @@ var heatmap;
 
 function initialize(){
     mapOptions = {
-        center: new google.maps.LatLng(-30.034647, -51.217658),
-        zoom: 13,
+        center: new google.maps.LatLng(-30.023994, -51.183378),
+        zoom: 14,
         mapTypeId: google.maps.MapTypeId.MAP
     };
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);

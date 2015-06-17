@@ -177,6 +177,10 @@
     <Compile Include="Migrations\201506161915207_Update de Dados.Designer.cs">
       <DependentUpon>201506161915207_Update de Dados.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506172031243_Indexacao.cs" />
+    <Compile Include="Migrations\201506172031243_Indexacao.Designer.cs">
+      <DependentUpon>201506172031243_Indexacao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CriaAcidentesListaModel.cs" />
@@ -270,6 +274,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506161915207_Update de Dados.resx">
       <DependentUpon>201506161915207_Update de Dados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506172031243_Indexacao.resx">
+      <DependentUpon>201506172031243_Indexacao.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

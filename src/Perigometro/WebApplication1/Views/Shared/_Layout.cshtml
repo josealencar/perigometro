@@ -34,8 +34,14 @@
                                     <div class="yamm-content full">
                                         <div class="row">
                                             <div class="col-sm-4">
-                                                <select class="form-control" id="ano">
-                                                    <option>-- Selecione o ano --</option>
+                                                <select class="form-control" id="anoIni">
+                                                    <option>-- Selecione a Data inicial --</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>...</option>
+                                                </select><br />
+                                                <select class="form-control" id="anoFin">
+                                                    <option>-- Data final --</option>
                                                     <option>1</option>
                                                     <option>2</option>
                                                     <option>...</option>
@@ -45,13 +51,7 @@
                                                     <option>1</option>
                                                     <option>2</option>
                                                     <option>...</option>
-                                                </select><br />
-                                                <select class="form-control" id="veiculo">
-                                                    <option>-- Tipo de veículo --</option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>...</option>
-                                                </select><br />
+                                                </select><br />                                                
                                             </div>
                                             <div class="col-sm-4">
                                                 <select class="form-control" id="regiao">
@@ -80,10 +80,16 @@
                                                     <option>2</option>
                                                     <option>...</option>
                                                 </select><br />
+                                                <select class="form-control" id="veiculo">
+                                                    <option>-- Tipo de veículo --</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>...</option>
+                                                </select>
 
                                                 <div class="checkbox">
                                                     <label><input type="checkbox" value="">Somente acidentes Fatais</label>
-                                                </div><br />
+                                                </div>
 
                                                 <input type="submit" value="Filtrar Acidentes" class="btn btn-success btn-block" />
                                             </div>                                            

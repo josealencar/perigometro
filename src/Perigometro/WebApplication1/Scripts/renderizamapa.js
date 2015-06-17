@@ -11,7 +11,7 @@ function initialize(){
         mapTypeId: google.maps.MapTypeId.MAP
     };
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-    //adicionaHeatmap(); //Esta comentado porque não terá dados no momento
+    buscarDados();
 };
 
 function adicionaHeatmap() {

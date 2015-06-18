@@ -8,7 +8,7 @@ namespace Perigometro.Dominio1
 {
     public class Lista 
     {
-        public Ano? Ano { get; set; }
+        public string Ano { get; set; }
         public Clima? Clima { get; set; }
         public Regiao? Regiao { get; set; }
         public Semana? Semana { get; set; }
@@ -17,4 +17,5 @@ namespace Perigometro.Dominio1
         public Veiculo? Veiculo { get; set; }
 
     }
+   
 }

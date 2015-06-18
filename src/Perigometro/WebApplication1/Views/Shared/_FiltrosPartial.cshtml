@@ -1,13 +1,25 @@
 ﻿@model Perigometro.Dominio1.Lista
 
+@{
+    List<SelectListItem> lista = new List<SelectListItem>();
+
+    for (int i = 2000; i <= 2013; i++)
+    {
+        SelectListItem selecionado = new SelectListItem() { Text = i.ToString(), Value = i.ToString() };
+
+        lista.Add(selecionado);  
+    }
+    
+}
+
 <div class="yamm-content full">
     <div class="row">
         <div class="col-sm-4">
-            Ano inicial:<br />
-            @Html.EnumDropDownListFor(model => model.Ano, "selecione um valor", htmlAttributes: new { @class = "form-control" })
+            Selecione o intervalo:<br />
+            @Html.DropDownListFor(model => model.Ano, lista, "data inicial", htmlAttributes: new { @class = "form-control" })           
             <br />
-            Ano final:<br />
-            @Html.EnumDropDownListFor(model => model.Ano, "selecione um valor", htmlAttributes: new { @class = "form-control" })
+            <br />
+            @Html.DropDownListFor(model => model.Ano, lista, "data final", htmlAttributes: new { @class = "form-control" }) 
             <br />
             Condições climáticas:<br />
             @Html.EnumDropDownListFor(model => model.Clima, "selecione um valor", htmlAttributes: new { @class = "form-control" })

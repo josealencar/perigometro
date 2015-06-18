@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.EnterpriseServices;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Web;
-
-
 namespace System.Web.Mvc
 {
     public static class MethodsExtensivos
     {
-        public static System.Web.Mvc.MvcHtmlString EnumDropDownListDescriptionFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, string label = null, object htmlAttributes = null)            
+        public static System.Web.Mvc.MvcHtmlString EnumDropDownListDescriptionFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, string label = null, object htmlAttributes = null)
         {
             TModel model = htmlHelper.ViewData.Model;
             TProperty property = default(TProperty);
@@ -18,7 +18,7 @@ namespace System.Web.Mvc
                 Func<TModel, TProperty> func = expression.Compile();
                 property = func(model);
             }
-            TagBuilder select = new TagBuilder("select");            
+            TagBuilder select = new TagBuilder("select");
             if (htmlAttributes != null)
             {
                 System.Reflection.PropertyInfo[] properties = htmlAttributes.GetType().GetProperties();
@@ -26,8 +26,8 @@ namespace System.Web.Mvc
                 {
                     select.MergeAttribute(prop.Name, (String)prop.GetValue(htmlAttributes, null));
                 }
-            }            
-            Type type = typeof(TProperty);            
+            }
+            Type type = typeof(TProperty);
             String[] Names = type.GetEnumNames();
             if (label != null)
             {
@@ -35,8 +35,9 @@ namespace System.Web.Mvc
                 option.MergeAttribute("value", "0");
                 option.InnerHtml = label;
                 select.InnerHtml += option.ToString();
-            }            
-            foreach(string Name in Names) {
+            }
+            foreach (string Name in Names)
+            {
                 System.Reflection.MemberInfo info = type.GetMember(Name).FirstOrDefault();
                 TagBuilder option = new TagBuilder("option");
                 if (property != null && property.ToString().Equals(Name))
@@ -67,7 +68,22 @@ namespace System.Web.Mvc
                 select.MergeAttribute("name", type.Name);
             }
             return MvcHtmlString.Create(select.ToString());
-        }            
-    
+        }
+
+        public static string GetEnumDescription(this Enum value)
+        {
+            FieldInfo fi = value.GetType().GetField(value.ToString());
+
+            DescriptionAttribute[] attributes =
+                (DescriptionAttribute[])fi.GetCustomAttributes(
+                typeof(DescriptionAttribute),
+                false);
+
+            if (attributes != null &&
+                attributes.Length > 0)
+                return attributes[0].Description;
+            else
+                return value.ToString();
+        }
     }
 }

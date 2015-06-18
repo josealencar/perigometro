@@ -26,10 +26,11 @@ body #map_canvas {
 
 #botoes {
     position: absolute;
-    position: center;
     bottom: 0;
     text-align: center;
 }
+
+
 
 
 .navbar-default {
@@ -46,7 +47,7 @@ body #map_canvas {
   color: #7e1308;
 }
 .navbar-default .navbar-nav > li > a {
-  color: #7e1308;
+  color: #9b2519;
 }
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
   color: white;

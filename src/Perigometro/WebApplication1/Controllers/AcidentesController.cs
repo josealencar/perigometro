@@ -101,15 +101,15 @@ namespace WebApplication1
             #endregion
 
             #region booleanos
-            bool anoInicialPreenchido = anoInicial != null;
-            bool anoFinalPreenchido = anoFinal != null;
-            bool climaPreenchido = clima != null;
-            bool regiaoPreenchido = regiao != null;
-            bool semanaPreenchido = semana != null;
-            bool turnoPreenchido = turno != null;
-            bool tipoPreenchido = tipo != null;
-            bool veiculoPreenchido = veiculo!= null;
-            bool fatalPreenchido = fatal != null;
+            bool anoInicialPreenchido = anoInicial != null && anoInicial != string.Empty;
+            bool anoFinalPreenchido = anoFinal != null && anoFinal != string.Empty;
+            bool climaPreenchido = clima != null && clima != string.Empty;
+            bool regiaoPreenchido = regiao != null && regiao != string.Empty;
+            bool semanaPreenchido = semana != null && semana != string.Empty;
+            bool turnoPreenchido = turno != null && turno != string.Empty;
+            bool tipoPreenchido = tipo != null && tipo != string.Empty;
+            bool veiculoPreenchido = veiculo != null && veiculo != string.Empty;
+            bool fatalPreenchido = fatal != null && fatal != string.Empty;
             #endregion
 
             #region funcoesWhereEncadeadas

@@ -14,7 +14,7 @@ function FiltraDadosIndex() {
 
     if (anoInicial === "" && anoFinal === "" && clima === "" && regiao === "" && semana === "" && turno === ""
         && tipo === "" && veiculo === "" && fatal === false) {
-        if (confirm("Você não selecionou nenhum filtro, para retornar todos os dados do banco clique em Ok, caso contrário clique em cancelar e selecione um filtro!")) {
+        if (confirm("Você não selecionou nenhum filtro. Para retornar todos os dados do banco clique em Ok, caso contrário clique em cancelar e selecione um filtro!")) {
         } else {
             return;
         }

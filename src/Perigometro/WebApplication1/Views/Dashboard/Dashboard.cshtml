@@ -1,24 +1,63 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Estatísticas";
 }
 
 <div class="row">
+    <div class="col-md-2"></div>
     <div class="col-md-8">
-        <h2>Estatísticas dos Acidentes  </h2>
-        
+        <h2 class="text-center">Estatísticas dos Acidentes  </h2>
+
         <p>
             Filtrando por um intervalo de anos, podemos ter algumas estatísticas:
         </p>
         <h4>Escolha o período</h4>
-        <p>
-            <ul>
-                <li>De: </li>
-                <li>Até: </li>
-            </ul>
-        </p>
+        <form class="form-inline" action="POST">
+            <div class="form-group">
+                <select class="form-control" id="anoIni">
+                    <option>2000</option>
+                    <option>2001</option>
+                    <option>2002</option>
+                    <option>2003</option>
+                    <option>2004</option>
+                    <option>2005</option>
+                    <option>2006</option>
+                    <option>2007</option>
+                    <option>2008</option>
+                    <option>2009</option>
+                    <option>2010</option>
+                    <option>2011</option>
+                    <option>2012</option>
+                    <option>2013</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select class="form-control" id="anoFin">
+                    <option>2000</option>
+                    <option>2001</option>
+                    <option>2002</option>
+                    <option>2003</option>
+                    <option>2004</option>
+                    <option>2005</option>
+                    <option>2006</option>
+                    <option>2007</option>
+                    <option>2008</option>
+                    <option>2009</option>
+                    <option>2010</option>
+                    <option>2011</option>
+                    <option>2012</option>
+                    <option>2013</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success">Gerar relatório</button>
+        </form>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="row">
+        <div class="col-md-8 btn-block">
+            <canvas id="grafico" width="400" height="400"></canvas>
+        </div>
     </div>
 </div>
 @section Scripts{
- @Scripts.Render("~/bundles/javascriptDashBoard")
+    @Scripts.Render("~/bundles/javascriptDashBoard")
 }

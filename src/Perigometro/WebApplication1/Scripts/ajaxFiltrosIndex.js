@@ -14,10 +14,8 @@ function FiltraDadosIndex() {
 
     if (anoInicial === "" && anoFinal === "" && clima === "" && regiao === "" && semana === "" && turno === ""
         && tipo === "" && veiculo === "" && fatal === false) {
-        if (confirm("Você não selecionou nenhum filtro, por padrão quando não existe nenhum filtro selecionado é retornado para a tela todos os registros do banco, se você deseja que seja retornado todos os registros favor clicar em Ok, caso contrário clique em Cancelar e selecione algum filtro. (Obs.: Caso clique em Ok pode levar algum tempo para carregar todos os dados no mapa)")) {
-            console.log("Buscando todos os dados.");
+        if (confirm("Você não selecionou nenhum filtro, para retornar todos os dados do banco clique em Ok, caso contrário clique em cancelar e selecione um filtro!")) {
         } else {
-            console.log("Busca cancelada.");
             return;
         }
     }
@@ -26,15 +24,12 @@ function FiltraDadosIndex() {
 
     var li = formulario.parent().parent().parent();
     li.attr('class', 'dropdown yamm-fw');
-    console.log(formulario);
-    console.log(li);
     $.ajax({
         url: '/Acidentes/BuscarDadosFiltrados',
         type: 'POST',
         dataType: 'JSON',
         data: formulario.serialize()
     }).done(function (res) {
-        console.log(res);
         heatmap.setMap(heatmap.getMap() ? null : null);
         populaHeatmapData(res);
     }).fail(function (res) {

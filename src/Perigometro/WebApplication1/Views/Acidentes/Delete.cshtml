@@ -1,4 +1,4 @@
-﻿@model Perigometro.Dominio.Acidente
+﻿@model Perigometro.Dominio1.Acidente
 
 @{
     ViewBag.Title = "Excluir";
@@ -169,7 +169,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Excluir" class="btn btn-default" /> |
+            <input type="submit" value="Excluir" class="btn btn-danger" /> |
             @Html.ActionLink("Voltar para a lista", "Index")
         </div>
     }

@@ -7,8 +7,9 @@
 <h2>Acidentes registrados (Exibindo somente os últimos 100 registros)</h2>
 
 <p>
-    @Html.ActionLink("Inserir novo registro", "Create")
+       <a href="~/Acidentes/Create" class="btn btn-success">Inserir novo registro</a>   
 </p>
+
 <table class="table">
     <tr>
         
@@ -120,7 +121,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Ano)
         </td>
-        <td>
+        <td>            
             @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) |
             @Html.ActionLink("Excluir", "Delete", new { id=item.Id })

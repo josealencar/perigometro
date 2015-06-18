@@ -88,6 +88,7 @@ namespace WebApplication1
         [AllowAnonymous]
         public JsonResult BuscarDadosFiltrados()
         {
+            #region RequestDadosForm
             var anoInicial = Request.Form.Get("AnoInicial");
             var anoFinal = Request.Form.Get("AnoFinal");
             var clima = Request.Form.Get("Clima");
@@ -97,6 +98,7 @@ namespace WebApplication1
             var tipo = Request.Form.Get("Tipo");
             var veiculo = Request.Form.Get("Veiculo");
             var fatal = Request.Form.Get("Fatal");
+            #endregion
 
             #region booleanos
             bool anoInicialPreenchido = anoInicial != null;
@@ -116,7 +118,7 @@ namespace WebApplication1
             {
                 var anoInicialSelecionado = RetornaAnoCorreto(Convert.ToInt32(anoInicial));
                 var anoFinalSelecionado = RetornaAnoCorreto(Convert.ToInt32(anoFinal));
-                #region AnoInicialMenosQueFinal
+                #region AnoInicialMenorQueFinal
                 if (anoInicialSelecionado < anoFinalSelecionado)
                 {
                     var dados = db.Acidentes.Where(_ => _.Ano >= anoInicialSelecionado && _.Ano <= anoFinalSelecionado);
@@ -160,6 +162,118 @@ namespace WebApplication1
                         else if (veiculoSelecionado.Equals("Bicicleta")) dados = dados.Where(_ => _.Bicicleta > 0);
                         else if (veiculoSelecionado.Equals("Outro")) dados = dados.Where(_ => _.Outro > 0);
                     }
+                    if (fatalPreenchido)
+                    {
+                        dados = dados.Where(_ => _.Fatais > 0);
+                    }
+                    var dadosJson = dados.Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                    var jsonResult = Json(new { Dados = dadosJson }, JsonRequestBehavior.AllowGet);
+                    jsonResult.MaxJsonLength = int.MaxValue;
+                    return jsonResult;
+                }
+                #endregion
+                #region AnoInicialMaiorQueFinal
+                if (anoInicialSelecionado > anoFinalSelecionado)
+                {
+                    var dados = db.Acidentes.Where(_ => _.Ano <= anoInicialSelecionado && _.Ano >= anoFinalSelecionado);
+                    if (climaPreenchido)
+                    {
+                        var climaSelecionado = Enum.GetName(typeof(Clima), Convert.ToInt32(clima)).ToUpper();
+                        dados = dados.Where(_ => _.Tempo == climaSelecionado);
+                    }
+                    if (regiaoPreenchido)
+                    {
+                        var regiaoSelecionado = Enum.GetName(typeof(Regiao), Convert.ToInt32(regiao)).ToUpper();
+                        dados = dados.Where(_ => _.Regiao == regiaoSelecionado);
+                    }
+                    if (semanaPreenchido)
+                    {
+                        var semanaSelecionado = Enum.GetName(typeof(Semana), Convert.ToInt32(semana)).ToUpper() + "-FEIRA";
+                        dados = dados.Where(_ => _.Dia_Sem == semanaSelecionado);
+                    }
+                    if (turnoPreenchido)
+                    {
+                        var turnoSelecionado = Enum.GetName(typeof(Turno), Convert.ToInt32(turno)).ToUpper();
+                        dados = dados.Where(_ => _.Noite_dia == turnoSelecionado);
+                    }
+                    if (tipoPreenchido)
+                    {
+                        var tipoSelecionado = Enum.GetName(typeof(Tipo), Convert.ToInt32(tipo)).ToUpper();
+                        dados = dados.Where(_ => _.Tipo_Acid == tipoSelecionado);
+                    }
+                    if (veiculoPreenchido)
+                    {
+                        var veiculoSelecionado = Enum.GetName(typeof(Veiculo), Convert.ToInt32(veiculo));
+                        if (veiculoSelecionado.Equals("Automovel")) dados = dados.Where(_ => _.Auto > 0);
+                        else if (veiculoSelecionado.Equals("Taxi")) dados = dados.Where(_ => _.Taxi > 0);
+                        else if (veiculoSelecionado.Equals("Lotacao")) dados = dados.Where(_ => _.Lotacao > 0);
+                        else if (veiculoSelecionado.Equals("OnibusUrb")) dados = dados.Where(_ => _.Onibus_Urb > 0);
+                        else if (veiculoSelecionado.Equals("OnibusMet")) dados = dados.Where(_ => _.Onibus_Met > 0);
+                        else if (veiculoSelecionado.Equals("OnibusInt")) dados = dados.Where(_ => _.Onibus_Int > 0);
+                        else if (veiculoSelecionado.Equals("Caminhao")) dados = dados.Where(_ => _.Caminhao > 0);
+                        else if (veiculoSelecionado.Equals("Moto")) dados = dados.Where(_ => _.Moto > 0);
+                        else if (veiculoSelecionado.Equals("Carroca")) dados = dados.Where(_ => _.Carroca > 0);
+                        else if (veiculoSelecionado.Equals("Bicicleta")) dados = dados.Where(_ => _.Bicicleta > 0);
+                        else if (veiculoSelecionado.Equals("Outro")) dados = dados.Where(_ => _.Outro > 0);
+                    }
+                    if (fatalPreenchido)
+                    {
+                        dados = dados.Where(_ => _.Fatais > 0);
+                    }
+                    var dadosJson = dados.Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                    var jsonResult = Json(new { Dados = dadosJson }, JsonRequestBehavior.AllowGet);
+                    jsonResult.MaxJsonLength = int.MaxValue;
+                    return jsonResult;
+                }
+                #endregion
+                #region AnoInicialIgualAoFinal
+                if (anoInicialSelecionado == anoFinalSelecionado)
+                {
+                    var dados = db.Acidentes.Where(_ => _.Ano == anoInicialSelecionado);
+                    if (climaPreenchido)
+                    {
+                        var climaSelecionado = Enum.GetName(typeof(Clima), Convert.ToInt32(clima)).ToUpper();
+                        dados = dados.Where(_ => _.Tempo == climaSelecionado);
+                    }
+                    if (regiaoPreenchido)
+                    {
+                        var regiaoSelecionado = Enum.GetName(typeof(Regiao), Convert.ToInt32(regiao)).ToUpper();
+                        dados = dados.Where(_ => _.Regiao == regiaoSelecionado);
+                    }
+                    if (semanaPreenchido)
+                    {
+                        var semanaSelecionado = Enum.GetName(typeof(Semana), Convert.ToInt32(semana)).ToUpper() + "-FEIRA";
+                        dados = dados.Where(_ => _.Dia_Sem == semanaSelecionado);
+                    }
+                    if (turnoPreenchido)
+                    {
+                        var turnoSelecionado = Enum.GetName(typeof(Turno), Convert.ToInt32(turno)).ToUpper();
+                        dados = dados.Where(_ => _.Noite_dia == turnoSelecionado);
+                    }
+                    if (tipoPreenchido)
+                    {
+                        var tipoSelecionado = Enum.GetName(typeof(Tipo), Convert.ToInt32(tipo)).ToUpper();
+                        dados = dados.Where(_ => _.Tipo_Acid == tipoSelecionado);
+                    }
+                    if (veiculoPreenchido)
+                    {
+                        var veiculoSelecionado = Enum.GetName(typeof(Veiculo), Convert.ToInt32(veiculo));
+                        if (veiculoSelecionado.Equals("Automovel")) dados = dados.Where(_ => _.Auto > 0);
+                        else if (veiculoSelecionado.Equals("Taxi")) dados = dados.Where(_ => _.Taxi > 0);
+                        else if (veiculoSelecionado.Equals("Lotacao")) dados = dados.Where(_ => _.Lotacao > 0);
+                        else if (veiculoSelecionado.Equals("OnibusUrb")) dados = dados.Where(_ => _.Onibus_Urb > 0);
+                        else if (veiculoSelecionado.Equals("OnibusMet")) dados = dados.Where(_ => _.Onibus_Met > 0);
+                        else if (veiculoSelecionado.Equals("OnibusInt")) dados = dados.Where(_ => _.Onibus_Int > 0);
+                        else if (veiculoSelecionado.Equals("Caminhao")) dados = dados.Where(_ => _.Caminhao > 0);
+                        else if (veiculoSelecionado.Equals("Moto")) dados = dados.Where(_ => _.Moto > 0);
+                        else if (veiculoSelecionado.Equals("Carroca")) dados = dados.Where(_ => _.Carroca > 0);
+                        else if (veiculoSelecionado.Equals("Bicicleta")) dados = dados.Where(_ => _.Bicicleta > 0);
+                        else if (veiculoSelecionado.Equals("Outro")) dados = dados.Where(_ => _.Outro > 0);
+                    }
+                    if (fatalPreenchido)
+                    {
+                        dados = dados.Where(_ => _.Fatais > 0);
+                    }
                     var dadosJson = dados.Select(_ => new { _.Latitude, _.Longitude }).ToList();
                     var jsonResult = Json(new { Dados = dadosJson }, JsonRequestBehavior.AllowGet);
                     jsonResult.MaxJsonLength = int.MaxValue;
@@ -168,13 +282,114 @@ namespace WebApplication1
                 #endregion
             }
             #endregion
-            
+            #region ApenasUmAnoPreenchido
+            if (anoInicialPreenchido || anoFinalPreenchido)
+            {
+                var anoSelecionado = anoInicialPreenchido ?
+                    RetornaAnoCorreto(Convert.ToInt32(anoInicial)) : RetornaAnoCorreto(Convert.ToInt32(anoFinal));
+                var dados = db.Acidentes.Where(_ => _.Ano == anoSelecionado);
+                if (climaPreenchido)
+                {
+                    var climaSelecionado = Enum.GetName(typeof(Clima), Convert.ToInt32(clima)).ToUpper();
+                    dados = dados.Where(_ => _.Tempo == climaSelecionado);
+                }
+                if (regiaoPreenchido)
+                {
+                    var regiaoSelecionado = Enum.GetName(typeof(Regiao), Convert.ToInt32(regiao)).ToUpper();
+                    dados = dados.Where(_ => _.Regiao == regiaoSelecionado);
+                }
+                if (semanaPreenchido)
+                {
+                    var semanaSelecionado = Enum.GetName(typeof(Semana), Convert.ToInt32(semana)).ToUpper() + "-FEIRA";
+                    dados = dados.Where(_ => _.Dia_Sem == semanaSelecionado);
+                }
+                if (turnoPreenchido)
+                {
+                    var turnoSelecionado = Enum.GetName(typeof(Turno), Convert.ToInt32(turno)).ToUpper();
+                    dados = dados.Where(_ => _.Noite_dia == turnoSelecionado);
+                }
+                if (tipoPreenchido)
+                {
+                    var tipoSelecionado = Enum.GetName(typeof(Tipo), Convert.ToInt32(tipo)).ToUpper();
+                    dados = dados.Where(_ => _.Tipo_Acid == tipoSelecionado);
+                }
+                if (veiculoPreenchido)
+                {
+                    var veiculoSelecionado = Enum.GetName(typeof(Veiculo), Convert.ToInt32(veiculo));
+                    if (veiculoSelecionado.Equals("Automovel")) dados = dados.Where(_ => _.Auto > 0);
+                    else if (veiculoSelecionado.Equals("Taxi")) dados = dados.Where(_ => _.Taxi > 0);
+                    else if (veiculoSelecionado.Equals("Lotacao")) dados = dados.Where(_ => _.Lotacao > 0);
+                    else if (veiculoSelecionado.Equals("OnibusUrb")) dados = dados.Where(_ => _.Onibus_Urb > 0);
+                    else if (veiculoSelecionado.Equals("OnibusMet")) dados = dados.Where(_ => _.Onibus_Met > 0);
+                    else if (veiculoSelecionado.Equals("OnibusInt")) dados = dados.Where(_ => _.Onibus_Int > 0);
+                    else if (veiculoSelecionado.Equals("Caminhao")) dados = dados.Where(_ => _.Caminhao > 0);
+                    else if (veiculoSelecionado.Equals("Moto")) dados = dados.Where(_ => _.Moto > 0);
+                    else if (veiculoSelecionado.Equals("Carroca")) dados = dados.Where(_ => _.Carroca > 0);
+                    else if (veiculoSelecionado.Equals("Bicicleta")) dados = dados.Where(_ => _.Bicicleta > 0);
+                    else if (veiculoSelecionado.Equals("Outro")) dados = dados.Where(_ => _.Outro > 0);
+                }
+                if (fatalPreenchido)
+                {
+                    dados = dados.Where(_ => _.Fatais > 0);
+                }
+                var dadosJson = dados.Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                var jsonResult = Json(new { Dados = dadosJson }, JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = int.MaxValue;
+                return jsonResult;
+            }
             #endregion
-
-            var dadossss = db.Acidentes.Where(_ => _.Ano == 2000).Select(_ => new { _.Latitude, _.Longitude }).ToList();
-            var jsonResultt = Json(new { Dados = dadossss }, JsonRequestBehavior.AllowGet);
-            jsonResultt.MaxJsonLength = int.MaxValue;
-            return jsonResultt;
+            #region SemNenhumAnoSelecionado
+            var dadoss = db.Acidentes.Where(_ => _.Ano >= 2000 && _.Ano <= 2013);
+            if (climaPreenchido)
+            {
+                var climaSelecionado = Enum.GetName(typeof(Clima), Convert.ToInt32(clima)).ToUpper();
+                dadoss = dadoss.Where(_ => _.Tempo == climaSelecionado);
+            }
+            if (regiaoPreenchido)
+            {
+                var regiaoSelecionado = Enum.GetName(typeof(Regiao), Convert.ToInt32(regiao)).ToUpper();
+                dadoss = dadoss.Where(_ => _.Regiao == regiaoSelecionado);
+            }
+            if (semanaPreenchido)
+            {
+                var semanaSelecionado = Enum.GetName(typeof(Semana), Convert.ToInt32(semana)).ToUpper() + "-FEIRA";
+                dadoss = dadoss.Where(_ => _.Dia_Sem == semanaSelecionado);
+            }
+            if (turnoPreenchido)
+            {
+                var turnoSelecionado = Enum.GetName(typeof(Turno), Convert.ToInt32(turno)).ToUpper();
+                dadoss = dadoss.Where(_ => _.Noite_dia == turnoSelecionado);
+            }
+            if (tipoPreenchido)
+            {
+                var tipoSelecionado = Enum.GetName(typeof(Tipo), Convert.ToInt32(tipo)).ToUpper();
+                dadoss = dadoss.Where(_ => _.Tipo_Acid == tipoSelecionado);
+            }
+            if (veiculoPreenchido)
+            {
+                var veiculoSelecionado = Enum.GetName(typeof(Veiculo), Convert.ToInt32(veiculo));
+                if (veiculoSelecionado.Equals("Automovel")) dadoss = dadoss.Where(_ => _.Auto > 0);
+                else if (veiculoSelecionado.Equals("Taxi")) dadoss = dadoss.Where(_ => _.Taxi > 0);
+                else if (veiculoSelecionado.Equals("Lotacao")) dadoss = dadoss.Where(_ => _.Lotacao > 0);
+                else if (veiculoSelecionado.Equals("OnibusUrb")) dadoss = dadoss.Where(_ => _.Onibus_Urb > 0);
+                else if (veiculoSelecionado.Equals("OnibusMet")) dadoss = dadoss.Where(_ => _.Onibus_Met > 0);
+                else if (veiculoSelecionado.Equals("OnibusInt")) dadoss = dadoss.Where(_ => _.Onibus_Int > 0);
+                else if (veiculoSelecionado.Equals("Caminhao")) dadoss = dadoss.Where(_ => _.Caminhao > 0);
+                else if (veiculoSelecionado.Equals("Moto")) dadoss = dadoss.Where(_ => _.Moto > 0);
+                else if (veiculoSelecionado.Equals("Carroca")) dadoss = dadoss.Where(_ => _.Carroca > 0);
+                else if (veiculoSelecionado.Equals("Bicicleta")) dadoss = dadoss.Where(_ => _.Bicicleta > 0);
+                else if (veiculoSelecionado.Equals("Outro")) dadoss = dadoss.Where(_ => _.Outro > 0);
+            }
+            if (fatalPreenchido)
+            {
+                dadoss = dadoss.Where(_ => _.Fatais > 0);
+            }
+            var dadossJson = dadoss.Select(_ => new { _.Latitude, _.Longitude }).ToList();
+            var jsonnResult = Json(new { Dados = dadossJson }, JsonRequestBehavior.AllowGet);
+            jsonnResult.MaxJsonLength = int.MaxValue;
+            return jsonnResult;
+            #endregion
+            #endregion
         }
 
         // GET: Acidentes/Edit/5

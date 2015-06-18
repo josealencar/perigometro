@@ -97,14 +97,8 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/yamm")
     @RenderSection("scripts", required: false)
-    <script>
-        $(document).ready(function () {
-            $("body").tooltip({ selector: '[data-toggle=tooltip]' });
-        });
-    </script>
-
+   
 </body>
 </html>

@@ -9,5 +9,10 @@ namespace WebApplication1.Controllers
             ViewBag.FiltrarAcidentes = true;
             return View();
         }
+
+        public ActionResult Error()
+        {
+            return View("Error");
+        }
     }
 }

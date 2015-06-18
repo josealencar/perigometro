@@ -21,6 +21,9 @@ namespace WebApplication1
                         "~/Scripts/ajaxbaselocal.js")
                         .Include("~/Scripts/ajaxFiltrosIndex.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/javascriptDashBoard")
+                        .Include("~/Scripts/filtraDashboard.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/yamm").Include(
                         "~/Scripts/yamm.js"));
 

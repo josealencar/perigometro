@@ -116,8 +116,8 @@ namespace WebApplication1
             #region AmbosAnosPreenchidos
             if (anoInicialPreenchido && anoFinalPreenchido)
             {
-                var anoInicialSelecionado = RetornaAnoCorreto(Convert.ToInt32(anoInicial));
-                var anoFinalSelecionado = RetornaAnoCorreto(Convert.ToInt32(anoFinal));
+                var anoInicialSelecionado = Convert.ToInt32(anoInicial);
+                var anoFinalSelecionado = Convert.ToInt32(anoFinal);
                 #region AnoInicialMenorQueFinal
                 if (anoInicialSelecionado < anoFinalSelecionado)
                 {
@@ -286,7 +286,7 @@ namespace WebApplication1
             if (anoInicialPreenchido || anoFinalPreenchido)
             {
                 var anoSelecionado = anoInicialPreenchido ?
-                    RetornaAnoCorreto(Convert.ToInt32(anoInicial)) : RetornaAnoCorreto(Convert.ToInt32(anoFinal));
+                    Convert.ToInt32(anoInicial) : Convert.ToInt32(anoFinal);
                 var dados = db.Acidentes.Where(_ => _.Ano == anoSelecionado);
                 if (climaPreenchido)
                 {
@@ -447,24 +447,6 @@ namespace WebApplication1
             db.Acidentes.Remove(acidente);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        private int RetornaAnoCorreto(int ano)
-        {
-            if (ano == 0) return 2000;
-            if (ano == 1) return 2001;
-            if (ano == 2) return 2002;
-            if (ano == 3) return 2003;
-            if (ano == 4) return 2004;
-            if (ano == 5) return 2005;
-            if (ano == 6) return 2006;
-            if (ano == 7) return 2007;
-            if (ano == 8) return 2008;
-            if (ano == 9) return 2009;
-            if (ano == 10) return 2010;
-            if (ano == 11) return 2011;
-            if (ano == 12) return 2012;
-            return 2013;
         }
 
         protected override void Dispose(bool disposing)

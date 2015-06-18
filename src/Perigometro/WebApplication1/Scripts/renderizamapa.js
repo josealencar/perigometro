@@ -4,7 +4,9 @@ var map;
 var array;
 var heatmap;
 
-function initialize(){
+
+function initialize() {
+    $('ul[class=loader]').removeAttr('hidden');
     mapOptions = {
         center: new google.maps.LatLng(-30.023994, -51.183378),
         zoom: 14,
@@ -18,7 +20,8 @@ function adicionaHeatmap() {
     heatmap = new google.maps.visualization.HeatmapLayer({
         data: heatmapData
     });
-    heatmap.setMap(map); 
+    heatmap.setMap(map);
+    $('ul[class=loader]').attr('hidden', 'true');
 };
 
 /*Modificação do heatmap*/

@@ -22,7 +22,10 @@ function FiltraDadosIndex() {
         }
     }
 
+    $('ul[class=loader]').removeAttr('hidden');
+
     var li = formulario.parent().parent().parent();
+    li.attr('class', 'dropdown yamm-fw');
     console.log(formulario);
     console.log(li);
     $.ajax({
@@ -32,7 +35,6 @@ function FiltraDadosIndex() {
         data: formulario.serialize()
     }).done(function (res) {
         console.log(res);
-        li.attr('class', 'dropdown yamm-fw');
         heatmap.setMap(heatmap.getMap() ? null : null);
         populaHeatmapData(res);
     }).fail(function (res) {

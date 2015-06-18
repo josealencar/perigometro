@@ -5,17 +5,22 @@
 <div id="map_canvas"></div>
 
 <div id="botoes" class="pull-down">
-<button class="btn btn-default" onclick="toggleHeatmap()">ON / OFF</button>
-<button class="btn btn-default" onclick="changeGradient()">COR</button>
-<button class="btn btn-default" onclick="changeRadius()">RAIO</button>
-<button class="btn btn-default" onclick="changeOpacity()">OPACIDADE</button>
+    <button class="btn btn-default" onclick="toggleHeatmap()" type="button" data-toggle="tooltip" data-placement="top" title="Habilitar ou desabilitar a layer do mapa de calor">ON / OFF</button>
+    <button class="btn btn-default" onclick="changeGradient()" type="button" data-toggle="tooltip" data-placement="top" title="Mudar a cor da layer do mapa de calor">COR</button>
+    <button class="btn btn-default" onclick="changeRadius()" type="button" data-toggle="tooltip" data-placement="top" title="Aumentar ou diminuir o tamanho dos pontos destacados">RAIO</button>
+    <button class="btn btn-default" onclick="changeOpacity()" type="button" data-toggle="tooltip" data-placement="top" title="Aumentar ou diminuir a opacidade da layer do mapa de calor">OPACIDADE</button>
 </div>
 				
 @section Scripts{
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
 <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?libraries=visualization&sensor=true_or_false">
 </script>
 @Scripts.Render("~/bundles/javascriptmapa")
 @Scripts.Render("~/bundles/javascriptdados")
+@Scripts.Render("~/bundles/bootstrap")
+<script>
+    $("[data-toggle='tooltip']").tooltip();
+</script>
 }

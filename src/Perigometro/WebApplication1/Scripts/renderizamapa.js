@@ -4,7 +4,6 @@ var map;
 var array;
 var heatmap;
 
-
 function initialize() {
     $('ul[class=loader]').removeAttr('hidden');
     mapOptions = {
@@ -61,3 +60,4 @@ function changeOpacity() {
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
+

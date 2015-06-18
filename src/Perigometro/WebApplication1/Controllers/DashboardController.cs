@@ -12,12 +12,11 @@ namespace WebApplication1.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        //GET: Dashboard
-        public ActionResult Dashboard()
+        //GET: Teste
+        public ActionResult TesteGrafico()
         {
             return View();
         }
-
 
         //GET: Estatisticas
         [AllowAnonymous]

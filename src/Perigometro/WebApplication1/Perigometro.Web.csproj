@@ -255,6 +255,7 @@
     <Content Include="Views\Sobre\Sobre.cshtml" />
     <Content Include="Views\Shared\_FiltrosPartial.cshtml" />
     <Content Include="Views\Dashboard\Dashboard.cshtml" />
+    <Content Include="Views\Dashboard\TesteGrafico.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

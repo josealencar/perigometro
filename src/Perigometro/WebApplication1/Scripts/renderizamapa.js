@@ -20,7 +20,9 @@ function adicionaHeatmap() {
         data: heatmapData
     });
     heatmap.setMap(map);
-    $('ul[class=loader]').attr('hidden', 'true');
+    setTimeout(function () {
+        $('ul[class=loader]').attr('hidden', 'true');
+    }, 1000);
 };
 
 /*Modificação do heatmap*/

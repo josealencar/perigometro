@@ -2,7 +2,7 @@
     $.ajax({
         url: '/Acidentes/BuscarInicial',
         type: 'GET'
-    }).done(function (res) { console.log(res); populaHeatmapData(res); });
+    }).done(function (res) { populaHeatmapData(res); }).fail(function (res) { console.log(res);});
 };
 
 function populaHeatmapData(dados) {

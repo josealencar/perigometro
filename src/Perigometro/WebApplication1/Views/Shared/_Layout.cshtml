@@ -32,11 +32,9 @@
                                 <li>
                                     <!-- Content container to add padding -->
 
-
-                                    <form action="" method="post" name="filtros">
-                                        @Html.Partial("_FiltrosPartial", new Perigometro.Dominio1.Lista())
-                                    </form>
-
+                                <form action="javascript:FiltraDadosIndex()" method="post" name="filtrosIndex">
+                                    @Html.Partial("_FiltrosPartial", new Perigometro.Dominio1.Lista())
+                                </form>
 
                                 </li>
                             </ul>

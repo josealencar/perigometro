@@ -13,7 +13,7 @@ namespace WebApplication1.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         //GET: Teste
-        public ActionResult TesteGrafico()
+        public ActionResult Dashboard()
         {
             return View();
         }

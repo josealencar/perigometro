@@ -1706,6 +1706,803 @@ namespace WebApplication1
             }
             #endregion
 
+            #region FormSemTurnoPreenchido
+            if (anoInicialPreenchido && anoFinalPreenchido && climaPreenchido && regiaoPreenchido && semanaPreenchido
+                && turnoPreenchido && tipoPreenchido && veiculoPreenchido && fatalPreenchido)
+            {
+                var anoInicialSelecionado = RetornaAnoCorreto(Convert.ToInt32(anoInicial));
+                var anoFinalSelecionado = RetornaAnoCorreto(Convert.ToInt32(anoFinal));
+                var climaSelecionado = Enum.GetName(typeof(Clima), Convert.ToInt32(clima)).ToUpper();
+                var regiaoSelecionado = Enum.GetName(typeof(Regiao), Convert.ToInt32(regiao)).ToUpper();
+                var semanaSelecionado = Enum.GetName(typeof(Semana), Convert.ToInt32(semana)).ToUpper() + "-FEIRA";
+                var tipoSelecionado = Enum.GetName(typeof(Tipo), Convert.ToInt32(tipo)).ToUpper();
+                var veiculoSelecionado = Enum.GetName(typeof(Veiculo), Convert.ToInt32(veiculo));
+                #region AutomovelComFatais
+                if (veiculoSelecionado.Equals("Automovel"))
+                {
+                    if (anoInicialSelecionado < anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoInicialSelecionado &&
+                            _.Ano <= anoFinalSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Auto > 0 && _.Fatais > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado > anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoFinalSelecionado &&
+                            _.Ano <= anoInicialSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Auto > 0 && _.Fatais > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado == anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano == anoFinalSelecionado && _.Tempo == climaSelecionado &&
+                            _.Regiao == regiaoSelecionado && _.Dia_Sem == semanaSelecionado
+                            && _.Tipo_Acid == tipoSelecionado && _.Auto > 0 && _.Fatais > 0)
+                            .Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                }
+                #endregion
+                #region TaxiComFatais
+                if (veiculoSelecionado.Equals("Taxi"))
+                {
+                    if (anoInicialSelecionado < anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoInicialSelecionado &&
+                            _.Ano <= anoFinalSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Taxi > 0 && _.Fatais > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado > anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoFinalSelecionado &&
+                            _.Ano <= anoInicialSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Taxi > 0 && _.Fatais > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado == anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano == anoFinalSelecionado && _.Tempo == climaSelecionado &&
+                            _.Regiao == regiaoSelecionado && _.Dia_Sem == semanaSelecionado
+                            && _.Tipo_Acid == tipoSelecionado && _.Taxi > 0 && _.Fatais > 0)
+                            .Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                }
+                #endregion
+                #region LotacaoComFatais
+                if (veiculoSelecionado.Equals("Lotacao"))
+                {
+                    if (anoInicialSelecionado < anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoInicialSelecionado &&
+                            _.Ano <= anoFinalSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Lotacao > 0 && _.Fatais > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado > anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoFinalSelecionado &&
+                            _.Ano <= anoInicialSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Lotacao > 0 && _.Fatais > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado == anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano == anoFinalSelecionado && _.Tempo == climaSelecionado &&
+                            _.Regiao == regiaoSelecionado && _.Dia_Sem == semanaSelecionado
+                            && _.Tipo_Acid == tipoSelecionado && _.Lotacao > 0 && _.Fatais > 0)
+                            .Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                }
+                #endregion
+                #region OnibusUrbComFatais
+                if (veiculoSelecionado.Equals("OnibusUrb"))
+                {
+                    if (anoInicialSelecionado < anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoInicialSelecionado &&
+                            _.Ano <= anoFinalSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Onibus_Urb > 0 && _.Fatais > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado > anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoFinalSelecionado &&
+                            _.Ano <= anoInicialSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Onibus_Urb > 0 && _.Fatais > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado == anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano == anoFinalSelecionado && _.Tempo == climaSelecionado &&
+                            _.Regiao == regiaoSelecionado && _.Dia_Sem == semanaSelecionado
+                            && _.Tipo_Acid == tipoSelecionado && _.Onibus_Urb > 0 && _.Fatais > 0)
+                            .Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                }
+                #endregion
+                #region OnibusMetComFatais
+                if (veiculoSelecionado.Equals("OnibusMet"))
+                {
+                    if (anoInicialSelecionado < anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoInicialSelecionado &&
+                            _.Ano <= anoFinalSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Onibus_Met > 0 && _.Fatais > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado > anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoFinalSelecionado &&
+                            _.Ano <= anoInicialSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Onibus_Met > 0 && _.Fatais > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado == anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano == anoFinalSelecionado && _.Tempo == climaSelecionado &&
+                            _.Regiao == regiaoSelecionado && _.Dia_Sem == semanaSelecionado
+                            && _.Tipo_Acid == tipoSelecionado && _.Onibus_Met > 0 && _.Fatais > 0)
+                            .Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                }
+                #endregion
+                #region OnibusIntComFatais
+                if (veiculoSelecionado.Equals("OnibusInt"))
+                {
+                    if (anoInicialSelecionado < anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoInicialSelecionado &&
+                            _.Ano <= anoFinalSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Onibus_Int > 0 && _.Fatais > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado > anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoFinalSelecionado &&
+                            _.Ano <= anoInicialSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Onibus_Int > 0 && _.Fatais > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado == anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano == anoFinalSelecionado && _.Tempo == climaSelecionado &&
+                            _.Regiao == regiaoSelecionado && _.Dia_Sem == semanaSelecionado
+                            && _.Tipo_Acid == tipoSelecionado && _.Onibus_Int > 0 && _.Fatais > 0)
+                            .Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                }
+                #endregion
+                #region CaminhaoComFatais
+                if (veiculoSelecionado.Equals("Caminhao"))
+                {
+                    if (anoInicialSelecionado < anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoInicialSelecionado &&
+                            _.Ano <= anoFinalSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Caminhao > 0 && _.Fatais > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado > anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoFinalSelecionado &&
+                            _.Ano <= anoInicialSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Caminhao > 0 && _.Fatais > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado == anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano == anoFinalSelecionado && _.Tempo == climaSelecionado &&
+                            _.Regiao == regiaoSelecionado && _.Dia_Sem == semanaSelecionado
+                            && _.Tipo_Acid == tipoSelecionado && _.Caminhao > 0 && _.Fatais > 0)
+                            .Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                }
+                #endregion
+                #region MotoComFatais
+                if (veiculoSelecionado.Equals("Moto"))
+                {
+                    if (anoInicialSelecionado < anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoInicialSelecionado &&
+                            _.Ano <= anoFinalSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Moto > 0 && _.Fatais > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado > anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoFinalSelecionado &&
+                            _.Ano <= anoInicialSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Moto > 0 && _.Fatais > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado == anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano == anoFinalSelecionado && _.Tempo == climaSelecionado &&
+                            _.Regiao == regiaoSelecionado && _.Dia_Sem == semanaSelecionado
+                            && _.Tipo_Acid == tipoSelecionado && _.Moto > 0 && _.Fatais > 0)
+                            .Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                }
+                #endregion
+                #region CarrocaComFatais
+                if (veiculoSelecionado.Equals("Carroca"))
+                {
+                    if (anoInicialSelecionado < anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoInicialSelecionado &&
+                            _.Ano <= anoFinalSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Carroca > 0 && _.Fatais > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado > anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoFinalSelecionado &&
+                            _.Ano <= anoInicialSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Carroca > 0 && _.Fatais > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado == anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano == anoFinalSelecionado && _.Tempo == climaSelecionado &&
+                            _.Regiao == regiaoSelecionado && _.Dia_Sem == semanaSelecionado
+                            && _.Tipo_Acid == tipoSelecionado && _.Carroca > 0 && _.Fatais > 0)
+                            .Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                }
+                #endregion
+                #region BicicletaComFatais
+                if (veiculoSelecionado.Equals("Bicicleta"))
+                {
+                    if (anoInicialSelecionado < anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoInicialSelecionado &&
+                            _.Ano <= anoFinalSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Bicicleta > 0 && _.Fatais > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado > anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoFinalSelecionado &&
+                            _.Ano <= anoInicialSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Bicicleta > 0 && _.Fatais > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado == anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano == anoFinalSelecionado && _.Tempo == climaSelecionado &&
+                            _.Regiao == regiaoSelecionado && _.Dia_Sem == semanaSelecionado
+                            && _.Tipo_Acid == tipoSelecionado && _.Bicicleta > 0 && _.Fatais > 0)
+                            .Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                }
+                #endregion
+                #region OutroComFatais
+                if (veiculoSelecionado.Equals("Outro"))
+                {
+                    if (anoInicialSelecionado < anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoInicialSelecionado &&
+                            _.Ano <= anoFinalSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Outro > 0 && _.Fatais > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado > anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoFinalSelecionado &&
+                            _.Ano <= anoInicialSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Outro > 0 && _.Fatais > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado == anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano == anoFinalSelecionado && _.Tempo == climaSelecionado &&
+                            _.Regiao == regiaoSelecionado && _.Dia_Sem == semanaSelecionado
+                            && _.Tipo_Acid == tipoSelecionado && _.Outro > 0 && _.Fatais > 0)
+                            .Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                }
+                #endregion
+            }
+            #endregion
+            #region FormSemTurnoPreenchidoESemFatais
+            if (anoInicialPreenchido && anoFinalPreenchido && climaPreenchido && regiaoPreenchido && semanaPreenchido
+                && turnoPreenchido && tipoPreenchido && veiculoPreenchido)
+            {
+                var anoInicialSelecionado = RetornaAnoCorreto(Convert.ToInt32(anoInicial));
+                var anoFinalSelecionado = RetornaAnoCorreto(Convert.ToInt32(anoFinal));
+                var climaSelecionado = Enum.GetName(typeof(Clima), Convert.ToInt32(clima)).ToUpper();
+                var regiaoSelecionado = Enum.GetName(typeof(Regiao), Convert.ToInt32(regiao)).ToUpper();
+                var semanaSelecionado = Enum.GetName(typeof(Semana), Convert.ToInt32(semana)).ToUpper() + "-FEIRA";
+                var tipoSelecionado = Enum.GetName(typeof(Tipo), Convert.ToInt32(tipo)).ToUpper();
+                var veiculoSelecionado = Enum.GetName(typeof(Veiculo), Convert.ToInt32(veiculo));
+                #region AutomovelSemFatais
+                if (veiculoSelecionado.Equals("Automovel"))
+                {
+                    if (anoInicialSelecionado < anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoInicialSelecionado &&
+                            _.Ano <= anoFinalSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Auto > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado > anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoFinalSelecionado &&
+                            _.Ano <= anoInicialSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Auto > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado == anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano == anoFinalSelecionado && _.Tempo == climaSelecionado &&
+                            _.Regiao == regiaoSelecionado && _.Dia_Sem == semanaSelecionado
+                            && _.Tipo_Acid == tipoSelecionado && _.Auto > 0)
+                            .Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                }
+                #endregion
+                #region TaxiSemFatais
+                if (veiculoSelecionado.Equals("Taxi"))
+                {
+                    if (anoInicialSelecionado < anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoInicialSelecionado &&
+                            _.Ano <= anoFinalSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Taxi > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado > anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoFinalSelecionado &&
+                            _.Ano <= anoInicialSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Taxi > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado == anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano == anoFinalSelecionado && _.Tempo == climaSelecionado &&
+                            _.Regiao == regiaoSelecionado && _.Dia_Sem == semanaSelecionado
+                            && _.Tipo_Acid == tipoSelecionado && _.Taxi > 0)
+                            .Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                }
+                #endregion
+                #region LotacaoSemFatais
+                if (veiculoSelecionado.Equals("Lotacao"))
+                {
+                    if (anoInicialSelecionado < anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoInicialSelecionado &&
+                            _.Ano <= anoFinalSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Lotacao > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado > anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoFinalSelecionado &&
+                            _.Ano <= anoInicialSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Lotacao > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado == anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano == anoFinalSelecionado && _.Tempo == climaSelecionado &&
+                            _.Regiao == regiaoSelecionado && _.Dia_Sem == semanaSelecionado
+                            && _.Tipo_Acid == tipoSelecionado && _.Lotacao > 0)
+                            .Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                }
+                #endregion
+                #region OnibusUrbSemFatais
+                if (veiculoSelecionado.Equals("OnibusUrb"))
+                {
+                    if (anoInicialSelecionado < anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoInicialSelecionado &&
+                            _.Ano <= anoFinalSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Onibus_Urb > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado > anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoFinalSelecionado &&
+                            _.Ano <= anoInicialSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Onibus_Urb > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado == anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano == anoFinalSelecionado && _.Tempo == climaSelecionado &&
+                            _.Regiao == regiaoSelecionado && _.Dia_Sem == semanaSelecionado
+                            && _.Tipo_Acid == tipoSelecionado && _.Onibus_Urb > 0)
+                            .Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                }
+                #endregion
+                #region OnibusMetSemFatais
+                if (veiculoSelecionado.Equals("OnibusMet"))
+                {
+                    if (anoInicialSelecionado < anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoInicialSelecionado &&
+                            _.Ano <= anoFinalSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Onibus_Met > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado > anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoFinalSelecionado &&
+                            _.Ano <= anoInicialSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Onibus_Met > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado == anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano == anoFinalSelecionado && _.Tempo == climaSelecionado &&
+                            _.Regiao == regiaoSelecionado && _.Dia_Sem == semanaSelecionado
+                            && _.Tipo_Acid == tipoSelecionado && _.Onibus_Met > 0)
+                            .Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                }
+                #endregion
+                #region OnibusIntSemFatais
+                if (veiculoSelecionado.Equals("OnibusInt"))
+                {
+                    if (anoInicialSelecionado < anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoInicialSelecionado &&
+                            _.Ano <= anoFinalSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Onibus_Int > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado > anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoFinalSelecionado &&
+                            _.Ano <= anoInicialSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Onibus_Int > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado == anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano == anoFinalSelecionado && _.Tempo == climaSelecionado &&
+                            _.Regiao == regiaoSelecionado && _.Dia_Sem == semanaSelecionado
+                            && _.Tipo_Acid == tipoSelecionado && _.Onibus_Int > 0)
+                            .Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                }
+                #endregion
+                #region CaminhaoSemFatais
+                if (veiculoSelecionado.Equals("Caminhao"))
+                {
+                    if (anoInicialSelecionado < anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoInicialSelecionado &&
+                            _.Ano <= anoFinalSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Caminhao > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado > anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoFinalSelecionado &&
+                            _.Ano <= anoInicialSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Caminhao > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado == anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano == anoFinalSelecionado && _.Tempo == climaSelecionado &&
+                            _.Regiao == regiaoSelecionado && _.Dia_Sem == semanaSelecionado
+                            && _.Tipo_Acid == tipoSelecionado && _.Caminhao > 0)
+                            .Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                }
+                #endregion
+                #region MotoSemFatais
+                if (veiculoSelecionado.Equals("Moto"))
+                {
+                    if (anoInicialSelecionado < anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoInicialSelecionado &&
+                            _.Ano <= anoFinalSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Moto > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado > anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoFinalSelecionado &&
+                            _.Ano <= anoInicialSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Moto > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado == anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano == anoFinalSelecionado && _.Tempo == climaSelecionado &&
+                            _.Regiao == regiaoSelecionado && _.Dia_Sem == semanaSelecionado
+                            && _.Tipo_Acid == tipoSelecionado && _.Moto > 0)
+                            .Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                }
+                #endregion
+                #region CarrocaSemFatais
+                if (veiculoSelecionado.Equals("Carroca"))
+                {
+                    if (anoInicialSelecionado < anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoInicialSelecionado &&
+                            _.Ano <= anoFinalSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Carroca > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado > anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoFinalSelecionado &&
+                            _.Ano <= anoInicialSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Carroca > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado == anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano == anoFinalSelecionado && _.Tempo == climaSelecionado &&
+                            _.Regiao == regiaoSelecionado && _.Dia_Sem == semanaSelecionado
+                            && _.Tipo_Acid == tipoSelecionado && _.Carroca > 0)
+                            .Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                }
+                #endregion
+                #region BicicletaSemFatais
+                if (veiculoSelecionado.Equals("Bicicleta"))
+                {
+                    if (anoInicialSelecionado < anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoInicialSelecionado &&
+                            _.Ano <= anoFinalSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Bicicleta > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado > anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoFinalSelecionado &&
+                            _.Ano <= anoInicialSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Bicicleta > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado == anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano == anoFinalSelecionado && _.Tempo == climaSelecionado &&
+                            _.Regiao == regiaoSelecionado && _.Dia_Sem == semanaSelecionado
+                            && _.Tipo_Acid == tipoSelecionado && _.Bicicleta > 0)
+                            .Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                }
+                #endregion
+                #region OutroSemFatais
+                if (veiculoSelecionado.Equals("Outro"))
+                {
+                    if (anoInicialSelecionado < anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoInicialSelecionado &&
+                            _.Ano <= anoFinalSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Outro > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado > anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano >= anoFinalSelecionado &&
+                            _.Ano <= anoInicialSelecionado && _.Tempo == climaSelecionado && _.Regiao == regiaoSelecionado
+                            && _.Dia_Sem == semanaSelecionado && _.Tipo_Acid == tipoSelecionado
+                            && _.Outro > 0).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                    if (anoInicialSelecionado == anoFinalSelecionado)
+                    {
+                        var dados = db.Acidentes.Where(_ => _.Ano == anoFinalSelecionado && _.Tempo == climaSelecionado &&
+                            _.Regiao == regiaoSelecionado && _.Dia_Sem == semanaSelecionado
+                            && _.Tipo_Acid == tipoSelecionado && _.Outro > 0)
+                            .Select(_ => new { _.Latitude, _.Longitude }).ToList();
+                        var jsonResultAutoFatais = Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+                        jsonResultAutoFatais.MaxJsonLength = int.MaxValue;
+                        return jsonResultAutoFatais;
+                    }
+                }
+                #endregion
+            }
+            #endregion
+
             var dadossss = db.Acidentes.Where(_ => _.Ano == 2000).Select(_ => new { _.Latitude, _.Longitude }).ToList();
             var jsonResult = Json(new { Dados = dadossss }, JsonRequestBehavior.AllowGet);
             jsonResult.MaxJsonLength = int.MaxValue;

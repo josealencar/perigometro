@@ -21,7 +21,7 @@ function adicionaHeatmap() {
     });
     heatmap.setMap(map);
     setTimeout(function () {
-        $('ul[class=loader]').attr('hidden', 'true');
+        $('ul[class=loader]').attr('hidden', 'hidden');
     }, 1000);
 };
 

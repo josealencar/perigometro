@@ -96,6 +96,7 @@ function buscaEstatisticas(ano1, ano2)
         myBarChart.datasets[0].bars[4].label = "Transporte mais Inseguro - " + inseguro.Nome;
         myBarChart.scale.xLabels[4] = "Transporte mais Inseguro - " + inseguro.Nome;
 
+        $('ul[class=loader]').attr('hidden', 'hidden');
 
         myBarChart.update();
         myPieChart.update();

@@ -79,6 +79,7 @@
         inicializaPie();
         inicializaBar();
         function submit() {
+            $('ul[class=loader]').removeAttr('hidden');
             var ano1 = $('#anoIni option:selected').val();
             var ano2 = $('#anoFin option:selected').val();
             var back = ano1;

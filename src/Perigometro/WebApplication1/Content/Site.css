@@ -16,6 +16,18 @@ textarea {
     max-width: 280px;
 }
 
+.navbar-brand {
+    padding: 15px 15px;
+    margin-left: 30px !important;
+}
+
+.logo {
+  max-height: 50px;
+  position: absolute;
+  left: 5px;
+  top: 12px;
+}
+
 body #map_canvas {
     position: absolute;
     top: 40px;

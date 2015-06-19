@@ -194,7 +194,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\img\cwi.png" />
     <Content Include="Content\img\favicon.ico" />
-    <Content Include="Content\img\favicon.png" />
+    <Content Include="Content\img\logo.png" />
     <Content Include="Content\yamm.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

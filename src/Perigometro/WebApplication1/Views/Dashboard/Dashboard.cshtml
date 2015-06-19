@@ -7,7 +7,7 @@
     <div class="col-md-8">
         <h2 class="text-center">Estatísticas dos Acidentes  </h2>
 
-        <p>
+        <p class="text-center">
             Filtrando por um intervalo de anos, podemos ter algumas estatísticas:
         </p>
         <h4>Escolha o período</h4>
@@ -47,20 +47,24 @@
                     <option>2012</option>
                     <option>2013</option>
                 </select>
-            </div>            
-        </form>
-        <button class="btn btn-success" , onclick="submit()">Gerar relatório</button><br>
+            </div>      
+            <button class="btn btn-success" onclick="submit()">Gerar relatório</button><br>      
+        </form>        
     </div>
-    <div class="col-md-2"></div>
+    
+    <br /><br />
+
     <div class="row">
-        <div class="col-md-8 btn-block" name="mortes">
+        <div class="col-md-6 text-center" name="mortes">
+            <br /><br />
             <label>Índice de mortes por Região:</label>
             <div>
                 <canvas id="myChart" width="300" height="300"></canvas>
             </div>
         </div>
 
-        <div class="col-md-8 btn-block">
+        <div class="col-md-6 ">
+            <br /><br />
             <label>Estatísticas gerais:</label>
             <div>
                 <canvas id="numeros" name="numeros" width="400" height="500"></canvas>
@@ -68,6 +72,7 @@
         </div>
     </div>
 </div>
+
 @section Scripts{
     @Scripts.Render("~/bundles/javascriptDashBoard")
     <script>

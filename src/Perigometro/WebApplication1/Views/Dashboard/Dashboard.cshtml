@@ -57,7 +57,7 @@
     <div class="row">
         <div class="col-md-6 text-center" name="mortes">
             <br /><br />
-            <label>Índice de mortes por Região:</label>
+            <h4>Acidentes fatais:</h4>
             <div>
                 <canvas id="myChart" width="300" height="300"></canvas>
             </div>
@@ -65,10 +65,37 @@
 
         <div class="col-md-6 text-center">
             <br /><br />
-            <label>Estatísticas gerais:</label>
-            <div>
-                <canvas id="numeros" name="numeros" width="400" height="500"></canvas>
-            </div>
+            <h4>Estatísticas gerais:</h4>
+            <table cellpadding="15" border="0" class=".table-responsive" style="text-align: left;">
+                <thead></thead>
+                <tbody>
+                    <tr>
+                        <td><img src="@Url.Content("~/Content/img/Icons/Calendario.png")"></img></td>
+                        <td><h4><b>&nbsp;&nbsp;&nbsp;Dia da Semana mais perigoso:</b>
+                        <b id="dia" class="estatisticaLaranja"></b></h4></td>
+                    </tr>
+                    <tr>
+                        <td><img src="@Url.Content("~/Content/img/Icons/Tempo.png")"></img></td>
+                        <td><h4><b>&nbsp;&nbsp;&nbsp;Condição climática mais perigosa: </b>
+                        <b id="tempo" class="estatisticaLaranja"></b></h4></td>
+                    </tr>
+                    <tr>
+                        <td><img src="@Url.Content("~/Content/img/Icons/Localizacao.png")"></img></td>
+                        <td><h4><b>&nbsp;&nbsp;&nbsp;Região mais perigosa: </b>
+                        <b id="regiao" class="estatisticaLaranja"></b></h4></td>
+                    </tr>
+                    <tr>
+                        <td><img src="@Url.Content("~/Content/img/Icons/Seguro.png")"></img></td>
+                        <td><h4><b>&nbsp;&nbsp;&nbsp;Transporte mais seguro: </b>
+                        <b id="seguro" class="estatisticaVerde"></b></h4></td>
+                    </tr>
+                    <tr>
+                        <td><img src="@Url.Content("~/Content/img/Icons/Crash.png")"></img></td>
+                        <td><h4><b>&nbsp;&nbsp;&nbsp;Transporte mais inseguro: </b>
+                            <b id="inseguro" class="estatisticaLaranja"></b></h4></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

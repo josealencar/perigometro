@@ -298,3 +298,12 @@ body {
     opacity: 0;
   }
 }
+
+.estatisticaLaranja
+{
+    color: #e67e22;
+}
+.estatisticaVerde
+{
+    color: #2ecc71;
+}

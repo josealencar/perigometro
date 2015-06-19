@@ -1,5 +1,4 @@
 ﻿var myPieChart;
-var myBarChart;
 
 function inicializaPie() {
     var ctx = document.getElementById("myChart").getContext("2d");
@@ -33,25 +32,15 @@ function inicializaPie() {
 }
 
 function inicializaBar() {
-    var ctx = document.getElementById("numeros").getContext("2d");
-
-    var dataGrafico = {
-        labels: ["Dia da Semana - SEXTA", "Condição Climática - BOM", "Região - LESTE", "Transporte mais Seguro - Bicileta", "Transporte mais Inseguro - Automóvel"],
-        datasets: [
-            {
-                label: "Estatisticas",
-                fillColor: "rgba(231, 76, 60,1.0)",
-                strokeColor: "rgba(231, 76, 60,1.0)",
-                highlightFill: "rgba(192, 57, 43,1.0)",
-                highlightStroke: "rgba(192, 57, 43,1.0)",
-                data: [2007, 9487, 3447, 109, 9796]
-            }
-        ]
-    };
-
-    myBarChart = new Chart(ctx).Bar(dataGrafico, { barShowStroke: false });
+    $('#dia').html("Sexta-feira");
+    $('#tempo').html("Tempo Bom");
+    $('#regiao').html("Zona Leste");
+    $('#seguro').html("Bicicleta");
+    $('#inseguro').html("Automóvel");
 };
-
+function toTitleCase(str) {
+    return str.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
+}
 function buscaEstatisticas(ano1, ano2)
 {
     var anos = [];
@@ -79,26 +68,16 @@ function buscaEstatisticas(ano1, ano2)
             myPieChart.segments[i].label = item.Regiao;
         });
 
-        myBarChart.datasets[0].bars[0].value = dia[0].Qtde;
-        myBarChart.datasets[0].bars[1].value = clima[0].Qtde;
-        myBarChart.datasets[0].bars[2].value = regiao[0].Qtde;
-        myBarChart.datasets[0].bars[3].value = seguro.Qtde;
-        myBarChart.datasets[0].bars[4].value = inseguro.Qtde;
-
-        myBarChart.datasets[0].bars[0].label = "Dia da Semana - " + dia[0].Dia;
-        myBarChart.scale.xLabels[0] = "Dia da Semana - " + dia[0].Dia;
-        myBarChart.datasets[0].bars[1].label = "Condição Climática - " + clima[0].Clima;
-        myBarChart.scale.xLabels[1] = "Condição Climática - " + clima[0].Clima;
-        myBarChart.datasets[0].bars[2].label = "Região - " + regiao[0].Regiao;
-        myBarChart.scale.xLabels[2] = "Região - " + regiao[0].Regiao;
-        myBarChart.datasets[0].bars[3].label = "Transporte mais Seguro - " + seguro.Nome;
-        myBarChart.scale.xLabels[3] = "Transporte mais Seguro - " + seguro.Nome;
-        myBarChart.datasets[0].bars[4].label = "Transporte mais Inseguro - " + inseguro.Nome;
-        myBarChart.scale.xLabels[4] = "Transporte mais Inseguro - " + inseguro.Nome;
 
         $('ul[class=loader]').attr('hidden', 'hidden');
 
-        myBarChart.update();
+        $('#dia').html(toTitleCase(dia[0].Dia));
+        $('#tempo').html("Tempo " + toTitleCase(clima[0].Clima));
+        $('#regiao').html("Zona " + toTitleCase(regiao[0].Regiao));
+        $('#seguro').html(seguro.Nome);
+        $('#inseguro').html(inseguro.Nome);
+
+
         myPieChart.update();
     })
 }

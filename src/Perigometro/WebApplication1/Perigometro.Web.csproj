@@ -194,6 +194,11 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\img\cwi.png" />
     <Content Include="Content\img\favicon.ico" />
+    <Content Include="Content\img\Icons\Calendario.png" />
+    <Content Include="Content\img\Icons\Crash.png" />
+    <Content Include="Content\img\Icons\Localizacao.png" />
+    <Content Include="Content\img\Icons\Seguro.png" />
+    <Content Include="Content\img\Icons\Tempo.png" />
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\yamm.css" />
     <Content Include="favicon.ico" />

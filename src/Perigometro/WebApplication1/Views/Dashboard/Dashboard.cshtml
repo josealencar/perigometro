@@ -10,10 +10,9 @@
         <p class="text-center">
             Filtrando por um intervalo de anos, podemos ter algumas estatísticas:
         </p>
-        <h4>Escolha o período</h4>
-        <form class="form-inline">
-            <div class="form-group">
-                <select class="form-control" id="anoIni">
+        <h4>Escolha o período:</h4>
+        
+                <select class="form-control esquerda" id="anoIni">
                     <option>2000</option>
                     <option>2001</option>
                     <option>2002</option>
@@ -29,9 +28,7 @@
                     <option>2012</option>
                     <option>2013</option>
                 </select>
-            </div>
-            <div class="form-group">
-                <select class="form-control" id="anoFin">
+                <select class="form-control esquerda" id="anoFin" >
                     <option>2000</option>
                     <option>2001</option>
                     <option>2002</option>
@@ -47,8 +44,7 @@
                     <option>2012</option>
                     <option>2013</option>
                 </select>
-            </div>           
-        </form>        
+                 
         <button class="btn btn-success" onclick="submit()">Gerar relatório</button><br> 
     </div>
     
@@ -63,7 +59,7 @@
             </div>
         </div>
 
-        <div class="col-md-6 text-center">
+        <div class="col-md-6" >
             <br /><br />
             <h4>Estatísticas gerais:</h4>
             <table cellpadding="15" border="0" class=".table-responsive" style="text-align: left;">
@@ -91,7 +87,7 @@
                     </tr>
                     <tr>
                         <td><img src="@Url.Content("~/Content/img/Icons/Crash.png")"></img></td>
-                        <td><h4><b>&nbsp;&nbsp;&nbsp;Transporte mais inseguro: </b>
+                        <td><h4><b>&nbsp;&nbsp;&nbsp;Transporte mais perigoso: </b>
                             <b id="inseguro" class="estatisticaLaranja"></b></h4></td>
                     </tr>
                 </tbody>

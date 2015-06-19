@@ -49,19 +49,30 @@
                 </select>
             </div>            
         </form>
-        <button class="btn btn-success" , onclick="submit()">Gerar relatório</button>
+        <button class="btn btn-success" , onclick="submit()">Gerar relatório</button><br>
     </div>
     <div class="col-md-2"></div>
     <div class="row">
+        <div class="col-md-8 btn-block" name="mortes">
+            <label>Índice de mortes por Região:</label>
+            <div>
+                <canvas id="myChart" width="300" height="300"></canvas>
+            </div>
+        </div>
+
         <div class="col-md-8 btn-block">
-            <canvas id="myChart" width="300" height="300"></canvas>
+            <label>Estatísticas gerais:</label>
+            <div>
+                <canvas id="numeros" name="numeros" width="400" height="500"></canvas>
+            </div>
         </div>
     </div>
 </div>
 @section Scripts{
     @Scripts.Render("~/bundles/javascriptDashBoard")
     <script>
-        inicializa();
+        inicializaPie();
+        inicializaBar();
         function submit() {
             var ano1 = $('#anoIni option:selected').val();
             var ano2 = $('#anoFin option:selected').val();

@@ -79,7 +79,7 @@ namespace WebApplication1
         [AllowAnonymous]
         public JsonResult BuscarInicial()
         {
-            var dados = db.Acidentes.Where(_ => _.Ano == 2013).Select(_ => new { _.Latitude, _.Longitude }).ToList();
+            var dados = db.Acidentes.Where(_ => _.Ano == 2014).Select(_ => new { _.Latitude, _.Longitude }).ToList();
             var jsonResult = Json(new { Dados = dados}, JsonRequestBehavior.AllowGet);
             jsonResult.MaxJsonLength = int.MaxValue;
             return jsonResult;
